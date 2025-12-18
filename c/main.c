@@ -4,7 +4,11 @@
 // Variabili 
 int difficoltà;
 float contoBancario;
-char properties[28][40] = {}; // Matrice per definire le proprietà
+char properties[24][22] = {"Vicolo Corto","Società Elettrica","Piazza Università","Viale Monterosa","Corso Magellano","Viale Traiano",
+                            "Via Roma","Stazione Nord","Piazza Giulio Cesare","Via Verdi","Viale dei Giardini","Viale Libertà",
+                            "Società Acqua Potabile","Stazione Ovest","Palazzo della regione",
+                            "Via Rossini","Corso San Maurizio","Via Tarino","Gobetti","Mole","Stazione Est","Giardini reali",
+                            "Parco della Vittoria","Avogrado"}; // Matrice per definire le proprietà
 // Funzione per mostrare il titolo (Chiamata volta ad inizio programma)
 void title()
 {
@@ -29,7 +33,6 @@ void show_difficolta()
     printf("2) Media: 25 000 $\n");
     printf("3) Alta: 50 000 $\n");
     printf("Cosa scegli ? (Inserisci il numero): ");
-    printf("palline sudatine");
 }
 int TiraDado()
 {
