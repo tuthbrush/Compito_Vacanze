@@ -6,9 +6,9 @@ int difficoltà;
 float contoBancario;
 char properties[24][22] = {"Vicolo Corto","Società Elettrica","Piazza Università","Viale Monterosa","Corso Magellano","Viale Traiano",
                             "Via Roma","Stazione Nord","Piazza Giulio Cesare","Via Verdi","Viale dei Giardini","Viale Libertà",
-                            "Società Acqua Potabile","Stazione Ovest","Palazzo della regione",
+                            "Via Onomatopea","Stazione Ovest","Palazzo della regione",
                             "Via Rossini","Corso San Maurizio","Via Tarino","Gobetti","Mole","Stazione Est","Giardini reali",
-                            "Parco della Vittoria","Avogrado"}; // Matrice per definire le proprietà
+                            "Parco della Vittoria","Avogadro"}; // Matrice per definire le proprietà
 // Funzione per mostrare il titolo (Chiamata volta ad inizio programma)
 void title()
 {
