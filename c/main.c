@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 // Variabili 
-int difficoltà;
+int target;
 float contoBancario;
 char properties[24][22] = {"Vicolo Corto","Società Elettrica","Piazza Università","Viale Monterosa","Corso Magellano","Viale Traiano",
                             "Via Roma","Stazione Nord","Piazza Giulio Cesare","Via Verdi","Viale dei Giardini","Viale Libertà",
@@ -28,7 +28,7 @@ void title()
 }
 void show_difficolta()
 {
-    printf("\nA che difficoltà vorresti giocare?");
+    printf("\nA che difficoltà vorresti giocare?\n");
     printf("1) Facile: 10 000 $\n");
     printf("2) Media: 25 000 $\n");
     printf("3) Alta: 50 000 $\n");
@@ -44,6 +44,6 @@ int main()
     srand(time(NULL));
     title();
     show_difficolta();
-    scanf("%d",difficoltà);
+    scanf("%d",target);
     return 0;
 }
