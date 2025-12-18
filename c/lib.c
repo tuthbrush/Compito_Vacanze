@@ -25,9 +25,4 @@ void makeCell(char array[], int arrayLen, int numCase){
     printf("|                      |");
     printf("|                      |");
     printf("|______________________|");
-}
-  _____
- /  #  \
-/| # # |\
- |[]___|
-    
+} 
