@@ -29,6 +29,7 @@ void show_difficolta()
     printf("2) Media: 25 000 $\n");
     printf("3) Alta: 50 000 $\n");
     printf("Cosa scegli ? (Inserisci il numero): ");
+    printf("palline sudatine");
 }
 int TiraDado()
 {
