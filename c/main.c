@@ -2,20 +2,22 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <unistd.h>
 #include "lib.h"
 // Variabili 
+#define PROPN 24 // Numero proprietà 
 int target;
-float contoBancario;
+float contoBancario = 0;
 char word[22];
-char proprieties[24][22] = {"Vicolo Corto\0","Societa Elettrica'\0","Piazza Universita'\0","Viale Monterosa\0","Corso Magellano\0","Viale Traiano\0",
+char proprieties[PROPN][22] = {"Start\0","Societa Elettrica'\0","Piazza Universita'\0","Viale Monterosa\0","Corso Magellano\0","Viale Traiano\0",
                             "Via Roma\0","Stazione Nord\0","Piazza Giulio Cesare\0","Via Verdi\0","Viale dei Giardini\0","Viale Liberta'\0",
                             "Via Onomatopea\0","Stazione Ovest\0","Palazzo della regione\0",
                             "Via Rossini\0","Corso San Maurizio\0","Via Tarino","Gobetti\0","Mole\0","Stazione Est\0","Giardini reali\0",
 "Parco della Vittoria\0","Avogadro\0"}; // Matrice per definire le proprietà
 
-int prices[] = {}; // Da definire
+int prices[] = {0,350,150,600,50,800,1000,1200,700,850,5400,2200,40,1200,4500,1400,6000,400,2300,8000,1200,4600,7200,10000}; // Da definire
 
-int numCase[24] = {1,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,2,1,0,2,0,0,0,0,}; //to modify
+int numCase[PROPN] = {1,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,2,1,0,2,0,0,0,0,}; //to modify
 
 int cellaAttuale = 0; // cella attuale del player
 
@@ -44,7 +46,20 @@ void show_difficolta()
     printf("3) Alta: 50 000 $\n");
     printf("Cosa scegli ? (Inserisci il numero): ");
 }
-int TiraDado(){return (rand() % 6);}
+int TiraDado(){
+    printf("Tirando il dado");
+    usleep(100000);
+    for (int i = 0; i < 3; i++) {
+        usleep(800000);
+        printf(".");
+        fflush(stdout); 
+    }
+
+    int risultato = (rand() % 6) + 1; 
+    printf("\nÈ uscito: %d\n", risultato);
+    
+    return risultato;
+}
 
 int main()
 {
@@ -54,6 +69,7 @@ int main()
     title();
     show_difficolta();
     //scanf("%d",target);
+    
     makeCell(word, wordLen, numCase, cellaAttuale);
     
     return 0;
