@@ -5,8 +5,11 @@
 #include <unistd.h>
 #include "lib.h"
 // Variabili 
+
 #define PROPN 24 // Numero proprietà 
+#define STBONUS 1000
 int target;
+int scelta;
 float contoBancario = 0;
 char word[22];
 char proprieties[PROPN][22] = {"Start\0","Societa Elettrica'\0","Piazza Universita'\0","Viale Monterosa\0","Corso Magellano\0","Viale Traiano\0",
@@ -20,6 +23,9 @@ int prices[] = {0,350,150,600,50,800,1000,1200,700,850,5400,2200,40,1200,4500,14
 int numCase[PROPN] = {1,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,2,1,0,2,0,0,0,0,}; //to modify
 
 int cellaAttuale = 0; // cella attuale del player
+
+// Funzioni 
+
 
 // Funzione per mostrare il titolo (Chiamata volta ad inizio programma)
 void title()
@@ -60,6 +66,26 @@ int TiraDado(){
     
     return risultato;
 }
+// Pulire lo schermo se necessario. Funziona sia su tutti gli os
+void pulisci()
+{
+    printf("\033[H\033[J");
+}
+void PassaDalVia()
+{
+    contoBancario += STBONUS;
+    printf("Sei passato dal Via! Hai guadagnato %d$",STBONUS);
+
+}
+
+void stato(int posAttuale, int soldi, char citta[], int prezzo)
+{
+    printf("Situazione attuale:\n");
+    printf("Sei nella casella numero %d",posAttuale);
+    printf("Il tuo saldo ammonta a %d$",soldi);
+    printf("Proprieta:  %s",citta);
+    printf("Costo: %d",prezzo);
+}
 
 int main()
 {
@@ -68,9 +94,48 @@ int main()
     srand(time(NULL));
     title();
     show_difficolta();
-    //scanf("%d",target);
+    //scanf("%d",scelta);
+    switch (scelta)
+    {
+    case 1:
+        target = 10000;
+        printf("Obbiettivo settato a %d",target);
+        break;
+    case 2:
+        target = 25000;
+        printf("Obbiettivo settato a %d",target);
+        break;
+    case 3:
+        target = 50000;
+        printf("Obbiettivo settato a %d",target);
+        break;
     
-    makeCell(word, wordLen, numCase, cellaAttuale);
+    default:
+        printf("Scelta non valida.\n");
+        break;
+    }
+
+    //makeCell(word, wordLen, numCase, cellaAttuale);  // fuori dal main loop rn
+    // Main loop di gioco 
+    do
+    {
+        stato(cellaAttuale,contoBancario,proprieties[cellaAttuale],prices[cellaAttuale]);  // Da testare
+        printf("Digitare 1 per tirare il dado!\n");
+        int BoolTiro;
+        scanf("%d",&BoolTiro);
+        if (BoolTiro==1)
+        {
+            int dado = TiraDado();
+            int nuovaPosizione = (cellaAttuale + dado);
+            cellaAttuale = nuovaPosizione;
+        }
+        
+
+    } while (contoBancario<target);
     
+    
+
+
+
     return 0;
 }
