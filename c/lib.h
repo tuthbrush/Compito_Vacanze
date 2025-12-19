@@ -1,3 +1,3 @@
 #include <stdio.h>
 
-int palle(int a, int b);
+void makeCell(char array[], int arrayLen, int numCase[], int cellaAttuale);

@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-void makeCell(char array[], int arrayLen, int numCase){
+void makeCell(char array[], int arrayLen, int numCase[], int cellaAttuale){
     int i = 0;
     int c = 22 - arrayLen;
-    printf("|––––––––––––––––––––––|");
+    printf("\n|––––––––––––––––––––––|\n");
 
-    printf("|                      |");
+    printf("|                      |\n");
 
     printf("|"); //printa il nome della casella
     for(; i!=22; i++){ 
@@ -14,20 +14,39 @@ void makeCell(char array[], int arrayLen, int numCase){
     for(; c!=0; c--){
         printf(" ");
     }
-    printf("|");
+    printf("|\n");
     
-    printf("|                      |");
-    printf("|                      |");
-
-    printf("|                      |");
-    printf("|                      |");
-    printf("|                      |");
-    printf("|                      |");
-    printf("|                      |");
-    printf("|______________________|");
+    switch(numCase[cellaAttuale]){
+        case 0:
+            printf("|                      |\n");
+            printf("|                      |\n");
+            printf("|                      |\n");
+            printf("|                      |\n");
+            printf("|                      |\n");
+            printf("|––––––––––––––––––––––|\n");
+            break;
+        case 1:
+            printf("|                      |\n");
+            printf("|   _____              |\n");
+            printf("|  /  #  \\             |\n");
+            printf("| /| # # |\\            |\n");
+            printf("|  |[]___|             |\n");
+            printf("|––––––––––––––––––––––|\n");
+            break;
+        case 2:
+            printf("|                      |\n");
+            printf("|   _____      _____   |\n");
+            printf("|  /  #  \\    /  #  \\  |\n");
+            printf("| /| # # |\\  /| # # |\\ |\n");
+            printf("|  |[]___|    |[]___|  |\n");
+            printf("|––––––––––––––––––––––|\n");
+            break;
+    }
 }
+/*
   _____
  /  #  \
 /| # # |\
  |[]___|
     
+*/
