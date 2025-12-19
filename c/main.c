@@ -46,7 +46,7 @@ void title()
 }
 void show_difficolta()
 {
-    printf("\nA che difficoltà vorresti giocare?");
+    printf("\nA che difficoltà vorresti giocare?\n");
     printf("1) Facile: 10 000 $\n");
     printf("2) Media: 25 000 $\n");
     printf("3) Alta: 50 000 $\n");
@@ -81,10 +81,10 @@ void PassaDalVia()
 void stato(int posAttuale, int soldi, char citta[], int prezzo)
 {
     printf("Situazione attuale:\n");
-    printf("Sei nella casella numero %d",posAttuale);
-    printf("Il tuo saldo ammonta a %d$",soldi);
-    printf("Proprieta:  %s",citta);
-    printf("Costo: %d",prezzo);
+    printf("Sei nella casella numero %d\n",posAttuale);
+    printf("Il tuo saldo ammonta a %d$\n",soldi);
+    printf("Proprieta:  %s\n",citta);
+    printf("Costo: %d\n",prezzo);
 }
 
 int main()
@@ -93,21 +93,23 @@ int main()
     int wordLen = strlen(word);
     srand(time(NULL));
     title();
+    sleep(3);
     show_difficolta();
-    //scanf("%d",scelta);
+    sleep(2);
+    scanf("%d",&scelta);
     switch (scelta)
     {
     case 1:
         target = 10000;
-        printf("Obbiettivo settato a %d",target);
+        printf("Obbiettivo settato a %d\n",target);
         break;
     case 2:
         target = 25000;
-        printf("Obbiettivo settato a %d",target);
+        printf("Obbiettivo settato a %d\n",target);
         break;
     case 3:
         target = 50000;
-        printf("Obbiettivo settato a %d",target);
+        printf("Obbiettivo settato a %d\n",target);
         break;
     
     default:
