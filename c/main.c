@@ -162,32 +162,36 @@ int main()
     // Main loop di gioco 
     do
     {
-        stato(cellaAttuale,contoBancario,proprieties[cellaAttuale],prices[cellaAttuale],BoolComprata[cellaAttuale],numeroProprieta);  
-        printf("Digitare 1 per tirare il dado!\n");
-        printf("Digitare 2 per comprare la proprietà!\n");
-        int BoolTiro;
-        scanf("%d",&BoolTiro);
-        if (BoolTiro==1)   // Sezione di movimento 
+        int mosse = 1;
+        while (mosse>0)
         {
-            int dado = TiraDado();
-            int temp = (cellaAttuale + dado);
-            if(temp >= PROPN){
-                PassaDalVia();
+            stato(cellaAttuale,contoBancario,proprieties[cellaAttuale],prices[cellaAttuale],BoolComprata[cellaAttuale],numeroProprieta);  
+            printf("Digitare 1 per tirare il dado!\n");
+            printf("Digitare 2 per comprare la proprietà!\n");
+            int BoolTiro;
+            scanf("%d",&BoolTiro);
+            if (BoolTiro==1)   // Sezione di movimento 
+            {
+                int dado = TiraDado();
+                int temp = (cellaAttuale + dado);
+                if(temp >= PROPN){
+                    PassaDalVia();
+                }
+                cellaAttuale = temp % PROPN;
+                mosse--;
             }
-            cellaAttuale = temp % PROPN;
-        }
-        else if (BoolTiro == 2 && BoolComprata[cellaAttuale] == 0)    // Sezione di acquisto
-        {
-            acquista(cellaAttuale,contoBancario,proprieties[cellaAttuale],prices[cellaAttuale]);
-        }
-        else if (BoolTiro == 2 && BoolComprata[cellaAttuale] == 1)
-        {
-            printf("Hai già comprato questa proprietà.\n");
+            else if (BoolTiro == 2 && BoolComprata[cellaAttuale] == 0)   // Sezione di acquisto
+            {
+                acquista(cellaAttuale,contoBancario,proprieties[cellaAttuale],prices[cellaAttuale]);
+                mosse--;
+                continue;
+            }
+            else if (BoolTiro == 2 && BoolComprata[cellaAttuale] == 1)
+            {
+                printf("Hai già comprato questa proprietà.\n");
+            }
         }
         
-        
-        
-
     } while (contoBancario<target);
     
     
