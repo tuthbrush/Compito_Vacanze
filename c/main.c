@@ -5,12 +5,13 @@
 #include <unistd.h>
 #include "lib.h"
 // Variabili 
+// Obbiettivo di proprietà e non di soldi 
 
 #define PROPN 24 // Numero proprietà 
 #define STBONUS 1000
 int target;
 int scelta;
-float contoBancario = 10000;
+float contoBancario = 1000;
 char word[22];
 char proprieties[PROPN][22] = {"Start\0","Societa Elettrica'\0","Piazza Universita'\0","Viale Monterosa\0","Corso Magellano\0","Viale Traiano\0",
                             "Via Roma\0","Stazione Nord\0","Piazza Giulio Cesare\0","Via Verdi\0","Viale dei Giardini\0","Viale Liberta'\0",
@@ -78,7 +79,7 @@ void pulisci()
 void PassaDalVia()
 {
     contoBancario += STBONUS;
-    printf("Sei passato dal Via! Hai guadagnato %d$",STBONUS);
+    printf("Sei passato dal Via! Hai guadagnato %d$\n",STBONUS);
 
 }
 
@@ -169,10 +170,13 @@ int main()
         if (BoolTiro==1)   // Sezione di movimento 
         {
             int dado = TiraDado();
-            int nuovaPosizione = (cellaAttuale + dado);
-            cellaAttuale = nuovaPosizione;
+            int temp = (cellaAttuale + dado);
+            if(temp >= PROPN){
+                PassaDalVia();
+            }
+            cellaAttuale = temp % PROPN;
         }
-        else if (BoolTiro == 2 && BoolComprata[cellaAttuale] == 0)
+        else if (BoolTiro == 2 && BoolComprata[cellaAttuale] == 0)    // Sezione di acquisto
         {
             acquista(cellaAttuale,contoBancario,proprieties[cellaAttuale],prices[cellaAttuale]);
         }
