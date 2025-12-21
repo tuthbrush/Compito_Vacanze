@@ -25,16 +25,16 @@
 #define CASADUE 40
 int target;
 int scelta;
-float contoBancario = 1000;
+float contoBancario = 1;
 char proprieties[PROPN][22] = {"Start\0","Societa Elettrica'\0","Piazza Universita'\0","Imprevisto\0","Corso Magellano\0","Viale Traiano\0",
                             "Via Roma\0","Probabilita\0","Piazza Giulio Cesare\0","Via Verdi\0","Viale dei Giardini\0","Viale Liberta'\0",
                             "Imprevisto\0","Stazione Ovest\0","Palazzo della regione\0",
                             "Via Rossini\0","Corso San Maurizio\0","Probabilita","Gobetti\0","Mole\0","Stazione Est\0","Giardini reali\0",
 "Parco della Vittoria\0","Avogadro\0"}; // Matrice per definire le proprietà
 
-int prices[PROPN] = {0,350,150,600,50,800,1000,1200,700,850,5400,2200,40,1200,4500,1400,6000,400,2300,8000,1200,4600,7200,10000}; // Da definire
+int prices[PROPN] = {0,350,150,600,50,800,1000,1200,700,850,2400,2200,400,1200,1500,1400,3000,400,2300,4000,1200,4600,7200,10000}; // Da definire
 
-int numCase[PROPN] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //to modify
+int numCase[PROPN] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; 
 
 int BoolComprata[PROPN] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
@@ -129,7 +129,7 @@ void stato(int posAttuale, int soldi, char citta[], int prezzo, int BoolComprata
 
 void acquista(int posAttuale, int soldi, char citta[],int prezzo)
 {
-    if(posAttuale == 0){
+    if(posAttuale == 0 || posAttuale ==3 || posAttuale == 7 || posAttuale ==12 || posAttuale==19){
         printf("Non puoi comprare questa proprietà\n");
     }
     else if(soldi<prezzo)
@@ -200,6 +200,7 @@ void vittoria(int conto, int proprieta, int c)
     printf("|  _  |/ _` | | \\ \\ / / | '_ \\| __/ _ \\| |\n");
     printf("| | | | (_| | |  \\ V /| | | | | || (_) |_|\n");
     printf("\\_| |_/\\__,_|_|   \\_/ |_|_| |_|\\__\\___/(_)\n");
+    printf("                                                  \n");
     printf("Hai concluso il gioco raggiungendo i %d$, possedendo %d proprietà e %d case!\n",conto,proprieta,c);
 
 }
@@ -269,6 +270,7 @@ int main()
             scanf("%d",&BoolTiro);
             if (BoolTiro==1)   // Sezione di movimento 
             {
+                pulisci();
                 int dado = TiraDado();
                 int temp = (cellaAttuale + dado);
                 if(temp >= PROPN){
@@ -304,10 +306,9 @@ int main()
             {
                 printf("Non puoi comprare case se non possiedi la proprietà.\n");
             }
-            pulisci();
         }
-    } while (contoBancario<target || contoBancario < 0);
-    pulisci(); // Da sistemare
+    } while (contoBancario<target && contoBancario > 0);
+    pulisci(); 
     if(contoBancario >= target)
     {
         vittoria(contoBancario,numeroProprieta,quantCase);
