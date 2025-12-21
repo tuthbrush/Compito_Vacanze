@@ -64,6 +64,25 @@ void title()
     
 }
 
+
+void loading(){
+    char R[100][2] = {" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "};
+    int loadval = 0;
+    for(int i = 0; i!=10; i++){
+        R[i][0] = '#';
+        loadval+=10;
+        printf("[");
+        for(int c = 0; c!=10; c++){
+            printf("%c", R[c][0], loadval);
+        }
+        printf("] %d%%", loadval);
+        fflush(stdout);
+        usleep((rand()%(850000-200000))+200000);
+        printf("\r");
+    }
+    printf("\n");
+}
+
 void show_difficolta()
 {
     printf("\nA che difficoltà vorresti giocare?\n");
@@ -218,6 +237,8 @@ void sconfitta()
 int main()
 {
     srand(time(NULL));
+    loading();
+    sleep(2);
     title();
     sleep(3);
     show_difficolta();
