@@ -65,19 +65,40 @@ void title()
 }
 
 
-void loading(){
-    char R[100][2] = {" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "};
+void loading() {
+    const int TOTAL = 80;  // Total width of the progress bar
+    char R[TOTAL][2];      // Array to hold characters and potentially spaces
+    
+    // Initialize the array with spaces
+    for(int i = 0; i < TOTAL; i++) {
+        R[i][0] = ' ';
+        R[i][1] = '\0';  // Null terminator if needed as string
+    }
+    
     int loadval = 0;
-    for(int i = 0; i!=10; i++){
+    
+    // Seed random number generator if not already seeded
+    static int seeded = 0;
+    if (!seeded) {
+        srand(time(NULL));
+        seeded = 1;
+    }
+    
+    for(int i = 0; i < TOTAL; i++) {
         R[i][0] = '#';
-        loadval+=10;
+        loadval = ((i + 1) * 100) / TOTAL;  // Calculate percentage
+        
         printf("[");
-        for(int c = 0; c!=10; c++){
-            printf("%c", R[c][0], loadval);
+        for(int c = 0; c < TOTAL; c++) {
+            printf("%c", R[c][0]);
         }
         printf("] %d%%", loadval);
+        
         fflush(stdout);
-        usleep((rand()%(850000-200000))+200000);
+        
+        // Adjust sleep time for smoother animation
+        usleep((rand() % (150000 - 50000)) + 50000);  // 50-150ms
+        
         printf("\r");
     }
     printf("\n");
