@@ -26,7 +26,6 @@
 int target;
 int scelta;
 float contoBancario = 1000;
-char word[22];
 char proprieties[PROPN][22] = {"Start\0","Societa Elettrica'\0","Piazza Universita'\0","Imprevisto\0","Corso Magellano\0","Viale Traiano\0",
                             "Via Roma\0","Probabilita\0","Piazza Giulio Cesare\0","Via Verdi\0","Viale dei Giardini\0","Viale Liberta'\0",
                             "Imprevisto\0","Stazione Ovest\0","Palazzo della regione\0",
@@ -42,6 +41,8 @@ int BoolComprata[PROPN] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 int cellaAttuale = 0; // cella attuale del player
 
 int numeroProprieta = 0;
+
+int quantCase = 0;
 
 // Funzioni 
 
@@ -129,7 +130,7 @@ void stato(int posAttuale, int soldi, char citta[], int prezzo, int BoolComprata
 void acquista(int posAttuale, int soldi, char citta[],int prezzo)
 {
     if(posAttuale == 0){
-        printf("non puoi comprare questa proprietà");
+        printf("Non puoi comprare questa proprietà\n");
     }
     else if(soldi<prezzo)
     {
@@ -180,20 +181,42 @@ void acquistoCasa(int posAttuale, int soldi, int prezzo, char citta[]){
         printf("Hai acquistato una casa su %s al costo di %d$\n",citta,costoCasa);
         contoBancario -= costoCasa;
         numCase[posAttuale]++;
+        quantCase++;
     }
     else{
         int costoCasa = (prezzo * CASADUE) / 100 ;
         printf("Hai acquistato una casa su %s al costo di %d$\n",citta,costoCasa);
         contoBancario -= costoCasa;
         numCase[posAttuale]++;
+        quantCase++;
     }
 }
 
+void vittoria(int conto, int proprieta, int c)
+{
+    printf(" _   _       _         _       _        _ \n");
+    printf("| | | |     (_)       (_)     | |      | |\n");
+    printf("| |_| | __ _ _  __   ___ _ __ | |_ ___ | |\n");
+    printf("|  _  |/ _` | | \\ \\ / / | '_ \\| __/ _ \\| |\n");
+    printf("| | | | (_| | |  \\ V /| | | | | || (_) |_|\n");
+    printf("\\_| |_/\\__,_|_|   \\_/ |_|_| |_|\\__\\___/(_)\n");
+    printf("Hai concluso il gioco raggiungendo i %d$, possedendo %d proprietà e %d case!\n",conto,proprieta,c);
 
+}
+
+void sconfitta()
+{
+    printf(" _   _       _                             _ \n");
+    printf("| | | |     (_)                           | |\n");
+    printf("| |_| | __ _ _   _ __   ___ _ __ ___  ___ | |\n");
+    printf("|  _  |/ _` | | | '_ \\ / _ \\ '__/ __|/ _ \\| |\n");
+    printf("| | | | (_| | | | |_) |  __/ |  \\__ \\ (_) |_|\n");
+    printf("\\_| |_/\\__,_|_| | .__/ \\___|_|  |___/\\___/(_)\n");
+    printf("                | |                          \n");
+    printf("                |_|                          \n");
+}
 int main()
 {
-    strcpy(word, proprieties[cellaAttuale]);
-    int wordLen = strlen(word);
     srand(time(NULL));
     title();
     sleep(3);
@@ -232,7 +255,6 @@ int main()
         break;
     }
 
-    //makeCell(word, wordLen, numCase, cellaAttuale);  // fuori dal main loop rn
     // Main loop di gioco 
     do
     {
@@ -282,7 +304,17 @@ int main()
             {
                 printf("Non puoi comprare case se non possiedi la proprietà.\n");
             }
+            pulisci();
         }
     } while (contoBancario<target || contoBancario < 0);
+    pulisci(); // Da sistemare
+    if(contoBancario >= target)
+    {
+        vittoria(contoBancario,numeroProprieta,quantCase);
+    }
+    if(contoBancario < 0)
+    {
+        sconfitta();
+    }
     return 0;
 }
