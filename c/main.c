@@ -1,3 +1,11 @@
+/*
+    Nome progetto: Monopoli Game
+    Autori: Golisano Leonardo e Luchetta Fabio
+    Data di completamento: 21/12/25
+    Versione 1.0
+    Repo GitHub: https://github.com/tuthbrush/Compito_Vacanze.git
+*/
+// Librerie 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -6,6 +14,7 @@
 #include <stdbool.h>
 #include "lib.h"
 
+// Schema colori 
 #define BLACK "\x1b[30m"
 #define RED "\x1b[31m"
 #define GREEN "\x1b[32m"
@@ -24,7 +33,7 @@
 #define CASADUE 40
 int target;
 int scelta;
-float contoBancario = 1;
+float contoBancario = 1000;
 char proprieties[PROPN][22] = {"Start\0","Societa Elettrica'\0","Piazza Universita'\0","Imprevisto\0","Corso Magellano\0","Viale Traiano\0",
                                 "Via Roma\0","Probabilita\0","Piazza Giulio Cesare\0","Via Verdi\0","Viale dei Giardini\0","Viale Liberta'\0",
                                 "Imprevisto\0","Stazione Ovest\0","Palazzo della regione\0",
@@ -67,38 +76,28 @@ void title()
 
 void loading() {
     const int TOTAL = 80;  // Total width of the progress bar
-    char R[TOTAL][2];      // Array to hold characters and potentially spaces
-    
-    // Initialize the array with spaces
+    char R[TOTAL][2];      
     for(int i = 0; i < TOTAL; i++) {
         R[i][0] = ' ';
-        R[i][1] = '\0';  // Null terminator if needed as string
+        R[i][1] = '\0';  
     }
-    
     int loadval = 0;
-    
-    // Seed random number generator if not already seeded
     static int seeded = 0;
     if (!seeded) {
         srand(time(NULL));
         seeded = 1;
     }
-    
     for(int i = 0; i < TOTAL; i++) {
         R[i][0] = '#';
-        loadval = ((i + 1) * 100) / TOTAL;  // Calculate percentage
+        loadval = ((i + 1) * 100) / TOTAL;  
         
         printf("[");
         for(int c = 0; c < TOTAL; c++) {
             printf("%c", R[c][0]);
         }
         printf("] %d%%", loadval);
-        
         fflush(stdout);
-        
-        // Adjust sleep time for smoother animation
         usleep((rand() % (150000 - 50000)) + 50000);  // 50-150ms
-        
         printf("\r");
     }
     printf("\n");
@@ -210,6 +209,11 @@ void probabilita()
 }
 
 void acquistoCasa(int posAttuale, int soldi, int prezzo, char citta[]){
+    if (posAttuale == 1 || posAttuale==13|| posAttuale==20)
+    {
+        printf("Non puoi acquistare case su questa proprietà.\n");
+    }
+    
     if (numCase[posAttuale] > 2 )
     {
         printf("Non puoi acquistare altre case.\n");
@@ -254,12 +258,14 @@ void sconfitta()
     printf("\\_| |_/\\__,_|_| | .__/ \\___|_|  |___/\\___/(_)\n");
     printf("                | |                          \n");
     printf("                |_|                          \n");
+    printf("Un imprevisto ti ha fatto andare in bancarotta.\n");
 }
 int main()
 {
     srand(time(NULL));
     loading();
     sleep(2);
+    pulisci();
     title();
     sleep(3);
     show_difficolta();
