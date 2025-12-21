@@ -4,7 +4,6 @@ void makeCell(char array[], int arrayLen, int numCase[], int cellaAttuale){
     int i = 0;
     int c = 22 - arrayLen;
     printf("\n|––––––––––––––––––––––|\n");
-
     printf("|                      |\n");
 
     printf("|"); //printa il nome della casella

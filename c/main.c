@@ -128,7 +128,10 @@ void stato(int posAttuale, int soldi, char citta[], int prezzo, int BoolComprata
 
 void acquista(int posAttuale, int soldi, char citta[],int prezzo)
 {
-    if(soldi<prezzo)
+    if(posAttuale == 0){
+        printf("non puoi comprare questa proprietà");
+    }
+    else if(soldi<prezzo)
     {
         printf("Non hai abbastanza soldi.\n");
     }
@@ -280,6 +283,6 @@ int main()
                 printf("Non puoi comprare case se non possiedi la proprietà.\n");
             }
         }
-    } while (contoBancario<target || contoBancario > 0);
+    } while (contoBancario<target || contoBancario < 0);
     return 0;
 }
