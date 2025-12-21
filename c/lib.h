@@ -1,3 +1,3 @@
 #include <stdio.h>
 
-void makeCell(char array[], int arrayLen, int numCase[], int cellaAttuale);
+void makeBoard(char array[24][22], int numCase[], int cellaAttuale);
