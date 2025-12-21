@@ -2,49 +2,337 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include <unistd.h>
-#include "lib.h" 
-void loading() {
-    const int TOTAL = 80;  // Total width of the progress bar
-    char R[TOTAL][2];      // Array to hold characters and potentially spaces
-    
-    // Initialize the array with spaces
-    for(int i = 0; i < TOTAL; i++) {
-        R[i][0] = ' ';
-        R[i][1] = '\0';  // Null terminator if needed as string
-    }
-    
-    int loadval = 0;
-    
-    // Seed random number generator if not already seeded
-    static int seeded = 0;
-    if (!seeded) {
-        srand(time(NULL));
-        seeded = 1;
-    }
-    
-    for(int i = 0; i < TOTAL; i++) {
-        R[i][0] = '#';
-        loadval = ((i + 1) * 100) / TOTAL;  // Calculate percentage
-        
-        printf("[");
-        for(int c = 0; c < TOTAL; c++) {
-            printf("%c", R[c][0]);
+#include "lib.h"
+
+void makeBoard(char array[24][22], int numCase[])
+{
+    int i = 0;
+    int arrayLen = 0;
+    int c = 0;
+    int layer = 1;
+    int word = 0;
+    int contatore = 0;
+    int cellaAttuale = 0;
+    int contaCella = 0;
+    int cycleMaker = 0;
+    int cellCounter = 0;
+    int megacont = 0;
+    int cellaAttualeCasa = 0;
+
+    if (layer == 0 || layer == 6)
+    {
+
+        for (i = 0; i <= 6; i++)
+        {
+            printf("|––––––––––––––––––––––|");
         }
-        printf("] %d%%", loadval);
-        
-        fflush(stdout);
-        
-        // Adjust sleep time for smoother animation
-        usleep((rand() % (150000 - 50000)) + 50000);  // 50-150ms
-        
-        printf("\r");
+
+        printf("\n");
+
+        for (i = 0; i <= 6; i++)
+        {
+            printf("|                      |");
+        }
+
+        printf("\n");
+
+        arrayLen = strlen(array[word]);
+        c = 22 - arrayLen;
+
+        for (i = 0; i <= 6; i++)
+        {
+            printf("|"); // printa il nome della casella
+            arrayLen = strlen(array[word]);
+            for (contatore = 0; contatore != arrayLen; contatore++)
+            {
+                printf("%c", array[word][contatore]);
+            }
+            for (c = 21 - arrayLen; c >= 0; c--)
+            {
+                printf(" ");
+            }
+            printf("|");
+            word++;
+        }
+
+        printf("\n");
+
+        for (i = 0; i <= 6; i++)
+        {
+            printf("|                      |");
+        }
+
+        printf("\n");
+        contaCella = cellaAttuale;
+        for (i = 0; i <= 6; i++)
+        {
+            switch (numCase[cellaAttuale])
+            {
+            case 0:
+                printf("|                      |");
+                break;
+            case 1:
+                printf("|   _____              |");
+                break;
+            case 2:
+                printf("|   _____      _____   |");
+                break;
+            }
+            cellaAttuale++;
+        }
+        printf("\n");
+        cellaAttuale = contaCella;
+        for (i = 0; i <= 6; i++)
+        {
+            switch (numCase[cellaAttuale])
+            {
+            case 0:
+                printf("|                      |");
+                break;
+            case 1:
+                printf("|  /  #  \\             |");
+                break;
+            case 2:
+                printf("|  /  #  \\    /  #  \\  |");
+                break;
+            }
+            cellaAttuale++;
+        }
+        printf("\n");
+        cellaAttuale = contaCella;
+        for (i = 0; i <= 6; i++)
+        {
+            switch (numCase[cellaAttuale])
+            {
+            case 0:
+                printf("|                      |");
+                break;
+            case 1:
+                printf("| /| # # |\\            |");
+                break;
+            case 2:
+                printf("| /| # # |\\  /| # # |\\ |");
+                break;
+            }
+            cellaAttuale++;
+        }
+        printf("\n");
+        cellaAttuale = contaCella;
+        for (i = 0; i <= 6; i++)
+        {
+            switch (numCase[cellaAttuale])
+            {
+            case 0:
+                printf("|                      |");
+                break;
+            case 1:
+                printf("|  |[]___|             |");
+                break;
+            case 2:
+                printf("|  |[]___|    |[]___|  |");
+                break;
+            }
+            cellaAttuale++;
+        }
+        printf("\n");
+
+        for (i = 0; i <= 6; i++)
+        {
+            printf("|––––––––––––––––––––––|");
+        }
+        printf("\n");
     }
-    printf("\n");
+    else
+    {
+        printf("|––––––––––––––––––––––|");
+        for (i = 0; i <= 4; i++)
+        {
+            printf("                        ");
+        }
+        printf("|––––––––––––––––––––––|");
+
+        printf("\n");
+
+        printf("|                      |");
+        for (i = 0; i <= 4; i++)
+        {
+            printf("                        ");
+        }
+        printf("|                      |");
+
+        printf("\n");
+
+        arrayLen = strlen(array[word]);
+        c = 22 - arrayLen;
+
+        for (i = 0; i <= 6; i++)
+        {
+            if (i == 0 || i == 6)
+            {
+                printf("|"); // printa il nome della casella
+                arrayLen = strlen(array[word]);
+                for (contatore = 0; contatore != arrayLen; contatore++)
+                {
+                    printf("%c", array[word][contatore]);
+                }
+                for (c = 21 - arrayLen; c >= 0; c--)
+                {
+                    printf(" ");
+                }
+                printf("|");
+                word++;
+            }
+            else
+            {
+                printf("                        ");
+            }
+        }
+
+        printf("\n");
+
+        printf("|                      |");
+        for (i = 0; i <= 4; i++)
+        {
+            printf("                        ");
+        }
+        printf("|                      |");
+
+        printf("\n");
+
+        for (i = 0; i != 6; i++)
+        {
+            if (i == 0 || i == 6)
+            {
+                cellaAttualeCasa = 0;
+                for (megacont = 0; megacont != 6; megacont++)
+                {
+                    if (cellaAttualeCasa == 0 || cellaAttualeCasa == 6)
+                    {
+                        switch (numCase[cellaAttuale])
+                        {
+                        case 0:
+                            printf("|                      |");
+                            break;
+                        case 1:
+                            printf("|   _____              |");
+                            break;
+                        case 2:
+                            printf("|   _____      _____   |");
+                            break;
+                        }
+                        cellaAttuale++;
+                        cellaAttualeCasa++;
+                    }
+                    else{
+                        cellaAttualeCasa++;
+                    }
+                }
+                printf("\n");
+                cellaAttualeCasa = 0;
+                cellaAttuale = contaCella;
+                for (megacont = 0; megacont != 6; megacont++)
+                {
+                    if (cellaAttualeCasa == 0 || cellaAttualeCasa == 6)
+                    {
+                        switch (numCase[cellaAttuale])
+                        {
+                        case 0:
+                            printf("|                      |");
+                            break;
+                        case 1:
+                            printf("|  /  #  \\             |");
+                            break;
+                        case 2:
+                            printf("|  /  #  \\    /  #  \\  |");
+                            break;
+                        }
+                        cellaAttuale++;
+                    }
+                    else{
+                        cellaAttualeCasa++;
+                    }
+                }
+                printf("\n");
+                cellaAttualeCasa = 0;
+                cellaAttuale = contaCella;
+                for (megacont = 0; megacont != 6; megacont++)
+                {
+                    if (cellaAttualeCasa == 0 || cellaAttualeCasa == 6)
+                    {
+                        switch (numCase[cellaAttuale])
+                        {
+                        case 0:
+                            printf("|                      |");
+                            break;
+                        case 1:
+                            printf("| /| # # |\\            |");
+                            break;
+                        case 2:
+                            printf("| /| # # |\\  /| # # |\\ |");
+                            break;
+                        }
+                        cellaAttuale++;
+                    }
+                    else{
+                        cellaAttualeCasa++;
+                    }
+                }
+
+                printf("\n");
+                cellaAttualeCasa = 0;
+                cellaAttuale = contaCella;
+                for (megacont = 0; megacont != 6; megacont++)
+                {
+                    if (cellaAttualeCasa == 0 || cellaAttualeCasa == 6)
+                    {
+                        switch (numCase[cellaAttuale])
+                        {
+                        case 0:
+                            printf("|                      |");
+                            break;
+                        case 1:
+                            printf("|  |[]___|             |");
+                            break;
+                        case 2:
+                            printf("|  |[]___|    |[]___|  |");
+                            break;
+                        }
+                        cellaAttuale++;
+                    }
+                    else{
+                        cellaAttualeCasa++;
+                    }  
+                }
+                printf("\n");
+            }
+            else
+            {
+                printf("                      ");
+            }
+            printf("\n");
+
+            printf("|––––––––––––––––––––––|");
+            for (i = 0; i <= 4; i++)
+            {
+                printf("                        ");
+            }
+            printf("|––––––––––––––––––––––|");
+            printf("\n");
+        }
+    }
 }
 
 int main()
 {
-    loading();
+    char proprieties[24][22] = {"Start\0", "Societa Elettrica'\0", "Piazza Universita'\0", "Imprevisto\0", "Corso Magellano\0", "Viale Traiano\0",
+                                "Via Roma\0", "Probabilita\0", "Piazza Giulio Cesare\0", "Via Verdi\0", "Viale dei Giardini\0", "Viale Liberta'\0",
+                                "Imprevisto\0", "Stazione Ovest\0", "Palazzo della regione\0",
+                                "Via Rossini\0", "Corso San Maurizio\0", "Probabilita", "Gobetti\0", "Mole\0", "Stazione Est\0", "Giardini reali\0",
+                                "Parco della Vittoria\0", "Avogadro\0"}; // Matrice per definire le proprietà;
+    int numcase[24] = {2, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int cell = 1;
+
+    makeBoard(proprieties, numcase);
+
     return 0;
 }
