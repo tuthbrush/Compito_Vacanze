@@ -214,7 +214,7 @@ void acquistoCasa(int posAttuale, int soldi, int prezzo, char citta[]){
         printf("Non puoi acquistare case su questa proprietà.\n");
     }
     
-    if (numCase[posAttuale] > 2 )
+    if (numCase[posAttuale] >= 2 )
     {
         printf("Non puoi acquistare altre case.\n");
     }
