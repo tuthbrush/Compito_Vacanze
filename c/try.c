@@ -9,7 +9,7 @@ void makeBoard(char array[24][22], int numCase[])
     int i = 0;
     int arrayLen = 0;
     int c = 0;
-    int layer = 1;
+    int layer = 0;
     int contatore = 0;
     int cellaAttuale = 0;
     int contaCella = 0;
@@ -358,7 +358,7 @@ int main()
                                 "Imprevisto\0", "Stazione Ovest\0", "Palazzo della regione\0",
                                 "Via Rossini\0", "Corso San Maurizio\0", "Probabilita", "Gobetti\0", "Mole\0", "Stazione Est\0", "Giardini reali\0",
                                 "Parco della Vittoria\0", "Avogadro\0"}; // Matrice per definire le proprietà;
-    int numcase[24] = {0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
+    int numcase[24] = {0, 1, 0, 0, 1, 2, 0, 2, 0, 1, 0, 0, 1, 0, 2, 1, 0, 0, 0, 0, 1, 0, 0, 1};
     int cell = 1;
 
     makeBoard(proprieties, numcase);
