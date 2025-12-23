@@ -31,18 +31,19 @@
 #define STBONUS 1000
 #define CASA 25   // Percentuale applica al costo delle case
 #define CASADUE 40
+#define NOCASE 0
 int target;
 int scelta;
 float contoBancario = 1000;
-char proprieties[PROPN][22] = {"Start\0","Societa Elettrica'\0","Piazza Universita'\0","Imprevisto\0","Corso Magellano\0","Viale Traiano\0",
-                                "Via Roma\0","Probabilita\0","Piazza Giulio Cesare\0","Via Verdi\0","Viale dei Giardini\0","Viale Liberta'\0",
-                                "Imprevisto\0","Stazione Ovest\0","Palazzo della regione\0",
-                                "Via Rossini\0","Corso San Maurizio\0","Probabilita","Gobetti\0","Mole\0","Stazione Est\0","Giardini reali\0",
+char proprieties[PROPN][22] = {"Start\0","Enel\0","Piazza Universita'\0","Imprevisto\0","Corso Magellano\0","Viale Traiano\0",
+                                "Via Roma\0","Probabilita\0","Piazza Giulio Cesare\0","Via Verdi\0","Parco del Valentino\0","Viale Liberta'\0",
+                                "Imprevisto\0","Porta Nuova\0","Palazzo della regione\0",
+                                "Via Rossini\0","Corso San Maurizio\0","Probabilita","Gobetti\0","Mole\0","Porta Susa\0","Giardini reali\0",
                                 "Parco della Vittoria\0","Avogadro\0"}; // Matrice per definire le proprietà
 
 int prices[PROPN] = {0,350,150,600,50,800,1000,1200,700,850,2400,2200,400,1200,1500,1400,3000,400,2300,4000,1200,4600,7200,10000}; // Da definire
 
-int numCase[PROPN] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; 
+int numCase[PROPN] = {0,NOCASE,0,NOCASE,0,0,0,NOCASE,0,0,0,0,NOCASE,NOCASE,0,0,0,NOCASE,0,0,NOCASE,0,0}; 
 
 int BoolComprata[PROPN] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
