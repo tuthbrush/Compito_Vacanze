@@ -35,7 +35,7 @@
 int target;
 int scelta;
 float contoBancario = 1000;
-char proprieties[PROPN][22] = {"Start\0", "Enel\0", "Piazza Universita'\0", "Imprevisto\0", "Corso Magellano\0", "Viale Traiano\0",
+char proprieties[PROPN][22] = {"Start\0", "Enel\0", "Palazzo Nuovo\0", "Imprevisto\0", "Corso Magellano\0", "Viale Traiano\0",
                                "Via Roma\0", "Probabilita\0", "Piazza Giulio Cesare\0", "Via Verdi\0", "Parco del Valentino\0", "Viale Liberta'\0",
                                "Imprevisto\0", "Porta Nuova\0", "Palazzo della regione\0",
                                "Via Rossini\0", "Corso San Maurizio\0", "Probabilita", "Gobetti\0", "Mole\0", "Porta Susa\0", "Giardini reali\0",
@@ -349,30 +349,54 @@ int main()
                 }
                 cellaAttuale = temp % PROPN; // Dare ciclicità al tabellone
                 mosse--;
+                printf("                                                   \n");
+                printf("                                                   \n");
                 printf("Digitare qualunque numero per tornare al tabellone\n");
                 scanf("%d", &tabellone);
             }
             else if (decisione == 2 && BoolComprata[cellaAttuale] == 0) // Sezione di acquisto
             {
+                pulisci();
                 acquista(cellaAttuale, contoBancario, proprieties[cellaAttuale], prices[cellaAttuale]);
                 mosse--;
+                printf("                                                   \n");
+                printf("                                                   \n");
+                printf("Digitare qualunque numero per tornare al tabellone\n");
+                scanf("%d", &tabellone);
                 continue;
             }
             else if (decisione == 2 && BoolComprata[cellaAttuale] == 1)
             {
+                pulisci();
+                printf("                                                   \n");
+                printf("                                                   \n");
                 printf("Hai già comprato questa proprietà.\n");
+                printf("Digitare qualunque numero per tornare al tabellone\n");
+                scanf("%d", &tabellone);
             }
             else if (decisione == 3 && BoolComprata[cellaAttuale] == 1) // Sezione acquisto case
             {
+                pulisci();
+                printf("                                                   \n");
+                printf("                                                   \n");
                 acquistoCasa(cellaAttuale, contoBancario, prices[cellaAttuale], proprieties[cellaAttuale]);
+                printf("Digitare qualunque numero per tornare al tabellone\n");
+                scanf("%d", &tabellone);
             }
             else if (decisione == 3 && BoolComprata[cellaAttuale] == 0)
             {
+                pulisci();
+                printf("                                                   \n");
+                printf("                                                   \n");
                 printf("Non puoi comprare case se non possiedi la proprietà.\n");
+                printf("Digitare qualunque numero per tornare al tabellone\n");
+                scanf("%d", &tabellone);
             }
             else if (decisione == 4)
             {
                 pulisci();
+                printf("                                                   \n");
+                printf("                                                   \n");
                 stato(contoBancario, prices[cellaAttuale], numeroProprieta);
                 printf("Digitare qualunque numero per tornare al tabellone\n");
                 scanf("%d", &tabellone);
