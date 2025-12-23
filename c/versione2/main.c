@@ -139,7 +139,7 @@ void PassaDalVia()
 
 }
 
-void stato(int posAttuale, int soldi, char citta[], int prezzo, int BoolComprata, int numeroPro, int numeroCase)
+void stato(int soldi,int prezzo, int numeroPro)
 {
     int costoCasa = (prezzo * CASA) / 100 ;
     int costoCasaDue = (prezzo * CASADUE) / 100 ;
@@ -147,19 +147,10 @@ void stato(int posAttuale, int soldi, char citta[], int prezzo, int BoolComprata
     printf("--------------------------\n");
     printf("                          \n");
     printf("Situazione attuale:\n");
-    printf("Sei nella casella numero %d\n",posAttuale);
     printf("Il tuo saldo ammonta a %d$\n",soldi);
-    printf("Proprieta:  %s\n",citta);
     printf("Costo: %d\n",prezzo);
-    if(BoolComprata == 1)
-    {
-        printf("Stato: Comprata\n");
-    }else{
-        printf("Stato: Non comprata\n");
-    }
     printf("Costo di una casa: %d$\n",costoCasa);
     printf("Costo della seconda casa: %d$\n",costoCasaDue);
-    printf("Attualemente possiedi %d case su questa proprietà\n",numeroCase);
     printf("Attualmente possiedi %d proprietà.\n",numeroPro);
     printf("                          \n");
     printf("--------------------------\n");
@@ -309,7 +300,7 @@ int main()
         int mosse = 1;
         while (mosse>0)
         {
-            stato(cellaAttuale,contoBancario,proprieties[cellaAttuale],prices[cellaAttuale],BoolComprata[cellaAttuale],numeroProprieta,numCase[cellaAttuale]);
+            stato(contoBancario,numeroProprieta,numeroProprieta);
             printf("Digitare 1 per tirare il dado!\n");
             printf("Digitare 2 per comprare la proprietà!\n");
             printf("Digita 3 per acquistare una casa! (Disponibile solo se la proprietà  tua)\n");
