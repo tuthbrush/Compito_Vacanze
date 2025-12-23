@@ -134,7 +134,7 @@ int TiraDado()
     return risultato;
 }
 // Pulire lo schermo se necessario. Funziona su tutti gli os
-void PulisciSchermo() {
+void pulisci() {
 
     #ifdef _WIN32
         // Windows usa il comando DOS
