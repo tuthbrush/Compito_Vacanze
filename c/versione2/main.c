@@ -47,6 +47,8 @@ int numCase[PROPN] = {0, NOCASE, 0, NOCASE, 0, 0, 0, NOCASE, 0, 0, 0, 0, NOCASE,
 
 int BoolComprata[PROPN] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
+int posizionereale[24] = {0, 1, 2, 3, 4, 5, 6, 23, 7, 22, 8, 21, 9, 20, 10, 19, 11, 18, 12, 17, 13, 16, 14, 15};
+
 int cellaAttuale = 0; // cella attuale del player
 
 int numeroProprieta = 0;
@@ -132,11 +134,22 @@ int TiraDado()
     return risultato;
 }
 // Pulire lo schermo se necessario. Funziona su tutti gli os
-void pulisci()
-{
-    printf("\033[H\033[J");
-}
+void PulisciSchermo() {
 
+    #ifdef _WIN32
+        // Windows usa il comando DOS
+        system("cls");
+    #elif __APPLE__
+        // macOS (Unix-based)
+        system("clear");
+    #elif __linux__
+        // Linux
+        system("clear");
+    #else
+        printf("Impossibile riconosere il sistema operativo.\n");
+    #endif
+}
+    
 void PassaDalVia()
 {
     contoBancario += STBONUS;
@@ -255,6 +268,7 @@ void sconfitta()
     printf("                |_|                          \n");
     printf("Un imprevisto ti ha fatto andare in bancarotta.\n");
 }
+
 int main()
 {
     srand(time(NULL));
