@@ -1,9 +1,12 @@
 /*
     Nome progetto: Monopoli Game
     Autori: Golisano Leonardo e Luchetta Fabio
-    Data di completamento: 21/12/25
-    Versione 1.0
+    Classe: 3 C INF IIS "A.Avogadro" di Torino 
+    Data di completamento: 06/01/26
+    Versione Attuale  2.0.0
+    Dipendeze: lib.c lib.h - Assicurarsi che siano nella stessa cartella di lavoro e incluse nella complilazione dell'eseguibile 
     Repo GitHub: https://github.com/tuthbrush/Compito_Vacanze.git
+
 */
 // Librerie
 #include <stdio.h>
