@@ -277,10 +277,10 @@ void sconfitta()
     printf("Un imprevisto ti ha fatto andare in bancarotta.\n");
 }
 
-void changeArr(int vecchiaPos, int Dado, int posAttuale, int posizioneArray[])
+void changeArr(int vecchiaPos,int posAttuale, int posizioneArray[])
 {
     posArray[vecchiaPos] = 0;
-    posArray[(posAttuale + Dado)] = 1;
+    posArray[posAttuale - 1] = 1;
     vecchiaPos = posAttuale;
 }
 
@@ -365,7 +365,7 @@ int main()
                 }
                 cellaAttuale = temp % PROPN; // Dare ciclicità al tabellone
                 mosse--;
-                changeArr(posArray[cellaAttuale], temp, cellaAttuale, posArray);
+                changeArr(posArray[cellaAttuale],cellaAttuale, posArray);
                 printf("                                                   \n");
                 printf("                                                   \n");
                 printf("Digitare qualunque numero per tornare al tabellone\n");
