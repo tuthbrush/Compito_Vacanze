@@ -53,6 +53,10 @@ int BoolComprata[PROPN] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 
 int posizionereale[24] = {0, 1, 2, 3, 4, 5, 6, 23, 7, 22, 8, 21, 9, 20, 10, 19, 11, 18, 12, 17, 13, 16, 14, 15};
 
+int posReale[PROPN] = {0, 1, 2, 3, 4, 5, 6, 23, 7, 22, 8, 21, 9, 20, 10, 19, 11, 18, 12, 17, 13, 16, 14, 15};
+
+int posArray[PROPN] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
 int cellaAttuale = 0; // cella attuale del player
 
 int numeroProprieta = 0;
@@ -279,7 +283,7 @@ void sconfitta()
 #include <stdbool.h>
 #include <string.h>
 
-void makeBoard(char array[24][22], int numCase[])
+void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[], int posArray[])
 {
     int i = 0;
     int arrayLen = 0;
@@ -291,6 +295,7 @@ void makeBoard(char array[24][22], int numCase[])
     int cycleMaker = 0;
     int cellCounter = 0;
     int word = 0;
+    int positioncheck = 0;
     for (layer = 0; layer <= 6; layer++)
     {
         if (layer == 0 || layer == 6)
@@ -330,14 +335,28 @@ void makeBoard(char array[24][22], int numCase[])
             }
 
             printf("\n");
-
+            
             for (i = 0; i <= 6; i++)
             {
-                printf("|                      |");
+                printf("|      "); // printa se c'è il player
+                if(posArray[positioncheck]==1){
+                    printf("player qui");
+                }
+                else{
+                    printf("          ");
+                }
+                printf("      |");
+                positioncheck++;
             }
+           
+        /*  for (i = 0; i <= 6; i++)
+            {
+                printf("|                      |");
+            }*/
+        
 
             printf("\n");
-            contaCella = cellaAttuale;
+            cellaAttuale = contaCella;
             for (i = 0; i <= 6; i++)
             {
                 switch (numCase[cellaAttuale])
@@ -465,12 +484,30 @@ void makeBoard(char array[24][22], int numCase[])
 
             printf("\n");
 
-            printf("|                      |");
+            
+            
+            printf("|      "); // printa se c'è il player
+            if(posArray[positioncheck]==1){
+                printf("player qui");
+            }
+            else{
+                printf("          ");
+            }
+            printf("      |");
+            positioncheck++;
             for (i = 0; i <= 4; i++)
             {
                 printf("                        ");
             }
-            printf("|                      |");
+            printf("|      "); // printa se c'è il player
+            if(posArray[positioncheck]==1){
+                printf("player qui");
+            }
+            else{
+                printf("          ");
+            }
+            printf("      |");
+            positioncheck++;
 
             printf("\n");
 
@@ -641,7 +678,7 @@ int main()
     {
     case 1:
         target = 10000;
-        printf("--------------------------\n");
+        printf("\n--------------------------\n");
         printf("                          \n");
         printf("Obbiettivo settato a %d\n", target);
         printf("                          \n");
@@ -675,13 +712,14 @@ int main()
     int tabellone;
     int dado;
     int temp;
+    int posvecchia = 0;
     int mosse = 1;
     do
     {
         mosse = 1;
         while (mosse > 0)
         {
-            makeBoard(proprieties, numCase);
+            makeBoard(proprieties, numCase, cellaAttuale, posReale, posArray);
             printf("Digitare 1 per tirare il dado!\n");
             printf("Digitare 2 per comprare la proprietà!\n");
             printf("Digita 3 per acquistare una casa! (Disponibile solo se la proprietà tua)\n");
@@ -706,6 +744,8 @@ int main()
                 }
                 cellaAttuale = temp % PROPN; // Dare ciclicità al tabellone
                 mosse--;
+                changeArr(posvecchia, cellaAttuale, posArray);
+                posvecchia = cellaAttuale;
                 printf("                                                   \n");
                 printf("                                                   \n");
                 printf("Digitare qualunque numero per tornare al tabellone\n");
@@ -754,7 +794,7 @@ int main()
                 pulisci();
                 printf("                                                   \n");
                 printf("                                                   \n");
-                stato(cellaAttuale, contoBancario, prices[cellaAttuale], numeroProprieta,numCase[cellaAttuale]);
+                stato(cellaAttuale, contoBancario, prices[cellaAttuale], numeroProprieta, numCase[cellaAttuale]);
                 printf("Digitare qualunque numero per tornare al tabellone\n");
                 scanf("%d", &tabellone);
             }
