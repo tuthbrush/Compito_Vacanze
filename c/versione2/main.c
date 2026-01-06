@@ -275,7 +275,7 @@ void sconfitta()
 int main()
 {
     srand(time(NULL));
-    // loading();
+    loading();
     sleep(2);
     pulisci();
     title();
