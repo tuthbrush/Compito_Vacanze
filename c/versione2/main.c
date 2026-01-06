@@ -277,6 +277,13 @@ void sconfitta()
     printf("Un imprevisto ti ha fatto andare in bancarotta.\n");
 }
 
+void changeArr(int vecchiaPos, int Dado, int posAttuale)
+{
+    posReale[vecchiaPos] = 0;
+    posReale[(posAttuale + Dado)] = 1;
+    vecchiaPos = posAttuale;
+}
+
 int main()
 {
     srand(time(NULL));
@@ -358,6 +365,7 @@ int main()
                 }
                 cellaAttuale = temp % PROPN; // Dare ciclicità al tabellone
                 mosse--;
+                changeArr(posReale[cellaAttuale], temp, cellaAttuale);
                 printf("                                                   \n");
                 printf("                                                   \n");
                 printf("Digitare qualunque numero per tornare al tabellone\n");
