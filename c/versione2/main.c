@@ -279,8 +279,8 @@ void sconfitta()
 
 void changeArr(int vecchiaPos,int posAttuale, int posizioneArray[])
 {
-    posArray[vecchiaPos] = 0;
-    posArray[posAttuale - 1] = 1;
+    posizioneArray[vecchiaPos] = 0;
+    posizioneArray[posAttuale] = 1;
     vecchiaPos = posAttuale;
 }
 
@@ -334,6 +334,7 @@ int main()
     int tabellone;
     int dado;
     int temp;
+    int posvecchia = 0;
     int mosse = 1;
     do
     {
@@ -365,7 +366,8 @@ int main()
                 }
                 cellaAttuale = temp % PROPN; // Dare ciclicità al tabellone
                 mosse--;
-                changeArr(posArray[cellaAttuale],cellaAttuale, posArray);
+                changeArr(posvecchia, cellaAttuale, posArray);
+                posvecchia = cellaAttuale;
                 printf("                                                   \n");
                 printf("                                                   \n");
                 printf("Digitare qualunque numero per tornare al tabellone\n");

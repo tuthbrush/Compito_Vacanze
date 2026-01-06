@@ -203,12 +203,30 @@ void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[]
 
             printf("\n");
 
-            printf("|                      |");
+            
+            
+            printf("|      "); // printa se c'è il player
+            if(posArray[positioncheck]==1){
+                printf("player qui");
+            }
+            else{
+                printf("          ");
+            }
+            printf("      |");
+            positioncheck++;
             for (i = 0; i <= 4; i++)
             {
                 printf("                        ");
             }
-            printf("|                      |");
+            printf("|      "); // printa se c'è il player
+            if(posArray[positioncheck]==1){
+                printf("player qui");
+            }
+            else{
+                printf("          ");
+            }
+            printf("      |");
+            positioncheck++;
 
             printf("\n");
 
