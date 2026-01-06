@@ -347,6 +347,7 @@ void makeBoard(char array[24][22], int numCase[])
             printf("\n");
         }
     }
+<<<<<<< HEAD
 }
 
 /*
@@ -356,3 +357,20 @@ void makeBoard(char array[24][22], int numCase[])
  |[]___|
 
 */
+=======
+    for(; c!=0; c--){
+        printf(" ");
+    }
+    printf("|");
+    
+    printf("|                      |");
+    printf("|                      |");
+
+    printf("|                      |");
+    printf("|                      |");
+    printf("|                      |");
+    printf("|                      |");
+    printf("|                      |");
+    printf("|______________________|");
+} 
+>>>>>>> main
