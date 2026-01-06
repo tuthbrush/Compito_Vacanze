@@ -35,6 +35,7 @@
 #define CASA 25 // Percentuale applica al costo delle case
 #define CASADUE 40
 #define NOCASE 0
+#define LOSSGAIN 3500 // Massima perdita / vincita imprevisti e probabilità
 int target;
 int scelta;
 float contoBancario = 1000;
@@ -63,18 +64,18 @@ int quantCase = 0;
 // Funzione per mostrare il titolo (Chiamata volta ad inizio programma)
 void title()
 {
-    printf("           ___  ___                              _ _   _____                      \n"); // La scritta viene bene, non modificare nulla
-    printf("           |  \\/  |                             | (_) |  __ \\                     \n");
-    printf("           | .  . | ___  _ __   ___  _ __   ___ | |_  | |  \\/ __ _ _ __ ___   ___ \n");
-    printf("           | |\\/| |/ _ \\| '_ \\ / _ \\| '_ \\ / _ \\| | | | | __ / _` | '_ ` _ \\ / _ \"\n");
-    printf("           | |  | | (_) | | | | (_) | |_) | (_) | | | | |_\\ \\ (_| | | | | | |  __/\n");
-    printf("           \\_|  |_/\\___/|_| |_|\\___/| .__/ \\___/|_|_|  \\____/\\__,_|_| |_| |_|\\___|\n");
-    printf("                                    | |                                           \n");
-    printf("                                    |_|                                           \n");
-    printf("--------------------------------------------------------------------------------------------------------\n");
-    printf("                        Made by Golisano Leonardo and Luchetta Fabio\n");
-    printf("--------------------------------------------------------------------------------------------------------\n");
-    printf("OBBIETTIVO: Il tuo obbiettivo sarà raggiungere una somma di denaro, in base alla difficoltà selezionata\n");
+    printf("                                  ___  ___                              _ _   _____                      \n"); // La scritta viene bene, non modificare nulla
+    printf("                                  |  \\/  |                             | (_) |  __ \\                     \n");
+    printf("                                  | .  . | ___  _ __   ___  _ __   ___ | |_  | |  \\/ __ _ _ __ ___   ___ \n");
+    printf("                                  | |\\/| |/ _ \\| '_ \\ / _ \\| '_ \\ / _ \\| | | | | __ / _` | '_ ` _ \\ / _ \"\n");
+    printf("                                  | |  | | (_) | | | | (_) | |_) | (_) | | | | |_\\ \\ (_| | | | | | |  __/\n");
+    printf("                                  \\_|  |_/\\___/|_| |_|\\___/| .__/ \\___/|_|_|  \\____/\\__,_|_| |_| |_|\\___|\n");
+    printf("                                                           | |                                           \n");
+    printf("                                                           |_|                                           \n");
+    printf("                       --------------------------------------------------------------------------------------------------------\n");
+    printf("                                               Made by Golisano Leonardo and Luchetta Fabio\n");
+    printf("                       --------------------------------------------------------------------------------------------------------\n");
+    printf("                       OBBIETTIVO: Il tuo obbiettivo sarà raggiungere una somma di denaro, in base alla difficoltà selezionata\n");
 }
 
 void loading()
@@ -159,7 +160,7 @@ void PassaDalVia()
     printf("Sei passato dal Via! Hai guadagnato %d$\n", STBONUS);
 }
 
-void stato(int soldi, int prezzo, int numeroPro)
+void stato(int posAttuale,int soldi, int prezzo, int numeroPro)
 {
     int costoCasa = (prezzo * CASA) / 100;
     int costoCasaDue = (prezzo * CASADUE) / 100;
@@ -168,6 +169,7 @@ void stato(int soldi, int prezzo, int numeroPro)
     printf("                          \n");
     printf("Situazione attuale:\n");
     printf("Il tuo saldo ammonta a %d$\n", soldi);
+    printf("Ti trovi su : %s\n", proprieties[posAttuale]);
     printf("Costo di una casa: %d$\n", costoCasa);
     printf("Costo della seconda casa: %d$\n", costoCasaDue);
     printf("Attualmente possiedi %d proprietà.\n", numeroPro);
@@ -198,7 +200,7 @@ void imprevisti()
 {
     printf("--------------------------\n");
     printf("                          \n");
-    float loss = (rand() % 3500) + 1;
+    float loss = (rand() % LOSSGAIN) + 1;
     printf("Sei capitato su un imprevisto!\n");
     printf("Ti vengono sottratti %.2f$", loss);
     contoBancario -= loss;
@@ -210,7 +212,7 @@ void probabilita()
 {
     printf("--------------------------\n");
     printf("                          \n");
-    float up = (rand() % 3500) + 1;
+    float up = (rand() % LOSSGAIN) + 1;
     printf("Sei capitato su una probabilià!\n");
     printf("Ti vengono regalati %.2f$", up);
     contoBancario += up;
@@ -400,7 +402,7 @@ int main()
                 pulisci();
                 printf("                                                   \n");
                 printf("                                                   \n");
-                stato(contoBancario, prices[cellaAttuale], numeroProprieta);
+                stato(cellaAttuale, contoBancario, prices[cellaAttuale], numeroProprieta);
                 printf("Digitare qualunque numero per tornare al tabellone\n");
                 scanf("%d", &tabellone);
             }
