@@ -47,11 +47,13 @@ char proprieties[PROPN][22] = {"Start\0", "Enel\0", "Palazzo Nuovo\0", "Imprevis
 
 int prices[PROPN] = {0, 350, 150, 600, 50, 800, 1000, 1200, 700, 850, 2400, 2200, 400, 1200, 1500, 1400, 3000, 400, 2300, 4000, 1200, 4600, 7200, 10000}; // Da definire
 
-int numCase[PROPN] = {0, NOCASE, 0, NOCASE, 0, 0, 0, NOCASE, 0, 0, 0, 0, NOCASE, NOCASE, 0, 0, 0, NOCASE, 0, 0, NOCASE, 0, 0};
+int numCase[PROPN] = {0, NOCASE, 2, NOCASE, 0, 0, 0, NOCASE, 0, 0, 0, 0, NOCASE, NOCASE, 0, 0, 0, NOCASE, 0, 0, NOCASE, 0, 0};
 
 int BoolComprata[PROPN] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-int posizionereale[24] = {0, 1, 2, 3, 4, 5, 6, 23, 7, 22, 8, 21, 9, 20, 10, 19, 11, 18, 12, 17, 13, 16, 14, 15};
+int posReale[PROPN] = {0, 1, 2, 3, 4, 5, 6, 23, 7, 22, 8, 21, 9, 20, 10, 19, 11, 18, 12, 17, 13, 16, 14, 15};
+
+int posArray[PROPN] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 int cellaAttuale = 0; // cella attuale del player
 
@@ -278,19 +280,20 @@ void sconfitta()
 int main()
 {
     srand(time(NULL));
-    loading();
+    /*loading();
     sleep(2);
     pulisci();
     title();
     sleep(3);
     show_difficolta();
     sleep(2);
-    scanf("%d", &scelta);
+    */
+   scanf("%d", &scelta);
     switch (scelta)
     {
     case 1:
         target = 10000;
-        printf("--------------------------\n");
+        printf("\n--------------------------\n");
         printf("                          \n");
         printf("Obbiettivo settato a %d\n", target);
         printf("                          \n");
@@ -330,7 +333,7 @@ int main()
         mosse = 1;
         while (mosse > 0)
         {
-            makeBoard(proprieties, numCase);
+            makeBoard(proprieties, numCase, cellaAttuale, posReale);
             printf("Digitare 1 per tirare il dado!\n");
             printf("Digitare 2 per comprare la proprietà!\n");
             printf("Digita 3 per acquistare una casa! (Disponibile solo se la proprietà tua)\n");

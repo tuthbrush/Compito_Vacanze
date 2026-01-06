@@ -1,8 +1,9 @@
 #include <stdio.h>
-#include <stdbool.h>
+#include <stdlib.h>
+#include <time.h>
 #include <string.h>
 
-void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[])
+void makeBoard(char array[24][22], int numCase[], int posAttuale, int posizionereale[])
 {
     int i = 0;
     int arrayLen = 0;
@@ -14,6 +15,8 @@ void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[]
     int cycleMaker = 0;
     int cellCounter = 0;
     int word = 0;
+    int posizione = posizionereale[posAttuale];
+
     for (layer = 0; layer <= 6; layer++)
     {
         if (layer == 0 || layer == 6)
@@ -32,52 +35,38 @@ void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[]
             }
 
             printf("\n");
+            
+            contaCella = cellaAttuale;
 
-            arrayLen = strlen(array[word]);
+            arrayLen = strlen(array[cellaAttuale]);
             c = 22 - arrayLen;
 
             for (i = 0; i <= 6; i++)
             {
                 printf("|"); // printa il nome della casella
-                arrayLen = strlen(array[word]);
+                arrayLen = strlen(array[cellaAttuale]);
                 for (contatore = 0; contatore != arrayLen; contatore++)
                 {
-                    printf("%c", array[word][contatore]);
+                    printf("%c", array[cellaAttuale][contatore]);
                 }
                 for (c = 21 - arrayLen; c >= 0; c--)
                 {
                     printf(" ");
                 }
                 printf("|");
-                word++;
+                cellaAttuale++;
             }
 
             printf("\n");
-            
+
             for (i = 0; i <= 6; i++)
             {
-                printf("|"); // printa il nome della casella
-                arrayLen = strlen(array[word]);
-                for (contatore = 0; contatore != arrayLen; contatore++)
-                {
-                    printf("%c", array[word][contatore]);
-                }
-                for (c = 21 - arrayLen; c >= 0; c--)
-                {
-                    printf(" ");
-                }
-                printf("|");
-                word++;
-            }
-           
-        /*  for (i = 0; i <= 6; i++)
-            {
                 printf("|                      |");
-            }*/
-        
+            }
+
+            cellaAttuale = contaCella;
 
             printf("\n");
-            cellaAttuale = contaCella;
             for (i = 0; i <= 6; i++)
             {
                 switch (numCase[cellaAttuale])
@@ -177,7 +166,9 @@ void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[]
 
             printf("\n");
 
-            arrayLen = strlen(array[word]);
+            contaCella = cellaAttuale;
+
+            arrayLen = strlen(array[cellaAttuale]);
             c = 22 - arrayLen;
 
             for (i = 0; i <= 6; i++)
@@ -185,17 +176,17 @@ void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[]
                 if (i == 0 || i == 6)
                 {
                     printf("|"); // printa il nome della casella
-                    arrayLen = strlen(array[word]);
+                    arrayLen = strlen(array[cellaAttuale]);
                     for (contatore = 0; contatore != arrayLen; contatore++)
                     {
-                        printf("%c", array[word][contatore]);
+                        printf("%c", array[cellaAttuale][contatore]);
                     }
                     for (c = 21 - arrayLen; c >= 0; c--)
                     {
                         printf(" ");
                     }
                     printf("|");
-                    word++;
+                    cellaAttuale++;
                 }
                 else
                 {
@@ -226,7 +217,7 @@ void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[]
                 printf("|   _____      _____   |");
                 break;
             }
-            cellaAttuale++;
+            cellaAttuale++; 
 
             for (i = 0; i <= 4; i++)
             {
@@ -366,10 +357,19 @@ void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[]
     }
 }
 
-/*
-  _____
- /  #  \
-/| # # |\
- |[]___|
 
-*/
+int main()
+{
+    char proprieties[24][22] = {"Start\0", "Societa Elettrica'\0", "Piazza Universita'\0", "Imprevisto\0", "Corso Magellano\0", "Viale Traiano\0",
+                                "Via Roma\0", "Probabilita\0", "Piazza Giulio Cesare\0", "Via Verdi\0", "Viale dei Giardini\0", "Viale Liberta'\0",
+                                "Imprevisto\0", "Stazione Ovest\0", "Palazzo della regione\0",
+                                "Via Rossini\0", "Corso San Maurizio\0", "Probabilita", "Gobetti\0", "Mole\0", "Stazione Est\0", "Giardini reali\0",
+                                "Parco della Vittoria\0", "Avogadro\0"}; // Matrice per definire le proprietà;
+    int numcase[24] = {0, 1, 0, 0, 1, 2, 0, 2, 0, 1, 0, 0, 1, 0, 2, 1, 0, 0, 0, 0, 1, 0, 0, 1};
+    int cell = 1;
+    int posizionereale[24] = {0, 1, 2, 3, 4, 5, 6, 23, 7, 22, 8, 21, 9, 20, 10, 19, 11, 18, 12, 17, 13, 16, 14, 15};
+
+    makeBoard(proprieties, numcase, cell, posizionereale);
+
+    return 0;
+}
