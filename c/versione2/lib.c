@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[])
+void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[], int posArray[])
 {
     int i = 0;
     int arrayLen = 0;
@@ -14,6 +14,7 @@ void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[]
     int cycleMaker = 0;
     int cellCounter = 0;
     int word = 0;
+    int positioncheck = 0;
     for (layer = 0; layer <= 6; layer++)
     {
         if (layer == 0 || layer == 6)
@@ -56,18 +57,15 @@ void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[]
             
             for (i = 0; i <= 6; i++)
             {
-                printf("|"); // printa il nome della casella
-                arrayLen = strlen(array[word]);
-                for (contatore = 0; contatore != arrayLen; contatore++)
-                {
-                    printf("%c", array[word][contatore]);
+                printf("|      "); // printa se c'è il player
+                if(posArray[positioncheck]==1){
+                    printf("player qui");
                 }
-                for (c = 21 - arrayLen; c >= 0; c--)
-                {
-                    printf(" ");
+                else{
+                    printf("          ");
                 }
-                printf("|");
-                word++;
+                printf("      |");
+                positioncheck++;
             }
            
         /*  for (i = 0; i <= 6; i++)

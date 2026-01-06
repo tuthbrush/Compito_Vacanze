@@ -277,10 +277,10 @@ void sconfitta()
     printf("Un imprevisto ti ha fatto andare in bancarotta.\n");
 }
 
-void changeArr(int vecchiaPos, int Dado, int posAttuale)
+void changeArr(int vecchiaPos, int Dado, int posAttuale, int posizioneArray[])
 {
-    posReale[vecchiaPos] = 0;
-    posReale[(posAttuale + Dado)] = 1;
+    posArray[vecchiaPos] = 0;
+    posArray[(posAttuale + Dado)] = 1;
     vecchiaPos = posAttuale;
 }
 
@@ -340,7 +340,7 @@ int main()
         mosse = 1;
         while (mosse > 0)
         {
-            makeBoard(proprieties, numCase, cellaAttuale, posReale);
+            makeBoard(proprieties, numCase, cellaAttuale, posReale, posArray);
             printf("Digitare 1 per tirare il dado!\n");
             printf("Digitare 2 per comprare la proprietà!\n");
             printf("Digita 3 per acquistare una casa! (Disponibile solo se la proprietà tua)\n");
@@ -365,7 +365,7 @@ int main()
                 }
                 cellaAttuale = temp % PROPN; // Dare ciclicità al tabellone
                 mosse--;
-                changeArr(posReale[cellaAttuale], temp, cellaAttuale);
+                changeArr(posArray[cellaAttuale], temp, cellaAttuale, posArray);
                 printf("                                                   \n");
                 printf("                                                   \n");
                 printf("Digitare qualunque numero per tornare al tabellone\n");
