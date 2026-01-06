@@ -21,19 +21,28 @@ Monopoly in C è una versione digitale semplificata del classico gioco da tavolo
 - Git per il versionamento del codice
 
 ## Istruzioni per l'installazione
+
+Se sei un utente casual, [qui](https://github.com/tuthbrush/Compito_Vacanze/releases/tag/V1) c'è già il file compilato
+
+## Istruzioni per la compilazione
+
+Se sei un utente esperto puoi prendere questa via:
+
 1. Clona il repository:
    ```bash
    git clone https://github.com/tuthbrush/Compito_Vacanze.git
    ```
-
+   
 2. Entra nella cartella del progetto
     ```bash
    cd Compito_Vacanze/c/versione2
    ```
+   
 3. Compila il file con le relative dipendenze
     ```bash
    gcc lib.c main.c -o main
    ```
+   
 4. Esegui il file
     ```bash
    ./main
@@ -45,4 +54,3 @@ Monopoly in C è una versione digitale semplificata del classico gioco da tavolo
 - **Compra case**: Se possiedi una proprietà, puoi acquistare case per migliorarla.
 - **Visualizza le statistiche**: Premi per vedere il saldo, le proprietà possedute e il numero di case.
 - **Imprevisti e probabilità** ti aiuterranno a raggiungere il tuo obbiettivo o saranno la causa della tua sconfitta
-
