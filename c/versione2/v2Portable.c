@@ -663,6 +663,13 @@ void makeBoard(char array[24][22], int numCase[], int posAttuale, int posReale[]
     }
 }
 
+void changeArr(int vecchiaPos,int posAttuale, int posizioneArray[])
+{
+    posizioneArray[vecchiaPos] = 0;
+    posizioneArray[posAttuale] = 1;
+    vecchiaPos = posAttuale;
+}
+
 int main()
 {
     srand(time(NULL));
