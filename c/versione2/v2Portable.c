@@ -46,7 +46,7 @@ char proprieties[PROPN][22] = {"Start\0", "Enel\0", "Palazzo Nuovo\0", "Imprevis
 
 int prices[PROPN] = {0, 350, 150, 600, 50, 800, 1000, 1200, 700, 850, 2400, 2200, 400, 1200, 1500, 1400, 3000, 400, 2300, 4000, 1200, 4600, 7200, 10000}; // Da definire
 
-int numCase[PROPN] = {0, NOCASE, 0, NOCASE, 0, 0, 0, NOCASE, 0, 0, 0, 0, NOCASE, NOCASE, 0, 0, 0, NOCASE, 0, 0, NOCASE, 0, 0};
+int numCase[PROPN] = {NOCASE, NOCASE, 1, NOCASE, 0, 2, 0, NOCASE, 0, 0, 0, 0, NOCASE, NOCASE, 0, 0, 0, NOCASE, 0, 0, NOCASE, 0, 0};
 
 int BoolComprata[PROPN] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -67,18 +67,19 @@ int quantCase = 0;
 // Funzione per mostrare il titolo (Chiamata volta ad inizio programma)
 void title()
 {
-    printf("                                  ___  ___                              _ _   _____                      \n"); // La scritta viene bene, non modificare nulla
-    printf("                                  |  \\/  |                             | (_) |  __ \\                     \n");
-    printf("                                  | .  . | ___  _ __   ___  _ __   ___ | |_  | |  \\/ __ _ _ __ ___   ___ \n");
-    printf("                                  | |\\/| |/ _ \\| '_ \\ / _ \\| '_ \\ / _ \\| | | | | __ / _` | '_ ` _ \\ / _ \"\n");
-    printf("                                  | |  | | (_) | | | | (_) | |_) | (_) | | | | |_\\ \\ (_| | | | | | |  __/\n");
-    printf("                                  \\_|  |_/\\___/|_| |_|\\___/| .__/ \\___/|_|_|  \\____/\\__,_|_| |_| |_|\\___|\n");
-    printf("                                                           | |                                           \n");
-    printf("                                                           |_|                                           \n");
-    printf("                       --------------------------------------------------------------------------------------------------------\n");
-    printf("                                               Made by Golisano Leonardo and Luchetta Fabio\n");
-    printf("                       --------------------------------------------------------------------------------------------------------\n");
-    printf("                       OBBIETTIVO: Il tuo obbiettivo sarà raggiungere una somma di denaro, in base alla difficoltà selezionata\n");
+    printf(RED "                                  ___  ___                              _ _   _____                      \n"); // La scritta viene bene, non modificare nulla
+    printf(RED "                                  |  \\/  |                             | (_) |  __ \\                     \n");
+    printf(RED "                                  | .  . | ___  _ __   ___  _ __   ___ | |_  | |  \\/ __ _ _ __ ___   ___ \n");
+    printf(RED "                                  | |\\/| |/ _ \\| '_ \\ / _ \\| '_ \\ / _ \\| | | | | __ / _` | '_ ` _ \\ / _ \"\n");
+    printf(RED "                                  | |  | | (_) | | | | (_) | |_) | (_) | | | | |_\\ \\ (_| | | | | | |  __/\n");
+    printf(RED "                                  \\_|  |_/\\___/|_| |_|\\___/| .__/ \\___/|_|_|  \\____/\\__,_|_| |_| |_|\\___|\n");
+    printf(RED "                                                           |_|                                           \n");
+    printf(RED "                                                           | |                                           \n");
+    printf(WHITE "                       --------------------------------------------------------------------------------------------------------\n");
+    printf(GREEN "                                               Made by Golisano Leonardo and Luchetta Fabio\n");
+    printf(WHITE "                       --------------------------------------------------------------------------------------------------------\n");
+    printf(YELLOW "                       OBBIETTIVO: Il tuo obbiettivo sarà raggiungere una somma di denaro, in base alla difficoltà selezionata\n");
+    fflush(stdout);
 }
 
 void loading()
